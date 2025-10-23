@@ -1,0 +1,45 @@
+{
+  "args": {
+    "dataset": "tiangler/cybersecurity_alarm_analysis",
+    "test_size": 0.2,
+    "seed": 42,
+    "max_features": 8000,
+    "base_max_iter": 2000,
+    "use_logit": true,
+    "pos_class_weight": 2.0,
+    "fuser_max_iter": 1000,
+    "recall_floor": 0.99
+  },
+  "base": {
+    "pr_auc": 0.9984866663355034,
+    "f1": 0.9914529914524914,
+    "th_f1": 0.9741860032081604,
+    "P": 0.9830508474576272,
+    "R": 1.0
+  },
+  "fuse_f1": {
+    "pr_auc": 0.9984866663355036,
+    "f1": 0.9914529914524914,
+    "th_f1": 0.8546500122061336,
+    "P": 0.9830508474576272,
+    "R": 1.0
+  },
+  "fuse_recall_pref": {
+    "recall_floor": 0.99,
+    "P": 0.9830508474576272,
+    "R": 1.0,
+    "th": 0.8546500122061336,
+    "F1_at_point": 0.9914529914524914,
+    "mode": "recall_target"
+  },
+  "class_map": {
+    "pos": "攻击",
+    "neg": "误报"
+  },
+  "feature_layout": [
+    "base_prob_or_logit",
+    "f_resp",
+    "f_ua",
+    "f_low"
+  ]
+}

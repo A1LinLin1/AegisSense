@@ -1,0 +1,219 @@
+/* 基础与全局 */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial;
+  color: #0f172a;
+  background: #f8fafc;
+}
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* —— 全宽 Hero 头部 —— */
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(90deg, #0ea5e9 0%, #6366f1 100%);
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.hero__inner {
+  max-width: 1600px;        /* 想要真正铺满可改为: max-width: none; */
+  margin: 0 auto;
+  padding: 16px 24px;
+  text-align: center;       /* 标题与副标题居中 */
+}
+.hero__title { font-size: 20px; font-weight: 800; letter-spacing: .5px; }
+.hero__sub   { opacity: .95; margin-top: 4px; font-size: 13px; }
+
+/* —— 主容器（自适应最大宽度） —— */
+.container {
+  width: 100%;
+  max-width: 1600px;        /* 若要“真正铺满”，改为 max-width: none; */
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: grid;
+  gap: 16px;
+}
+
+/* —— 自适应栅格 —— */
+.grid { display: grid; gap: 16px; }
+
+/* 两列区域：自动填充，多列/单列自适应 */
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+
+/* 单列区域：保持良好最小宽度（需要严格单列可改为 1fr） */
+.grid--1 { grid-template-columns: minmax(320px, 1fr); }
+
+/* 中/小屏兜底（可选） */
+@media (max-width: 900px) {
+  .grid--2 { grid-template-columns: 1fr; }
+}
+
+/* —— 卡片 —— */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;             /* 避免子元素撑破卡片 */
+}
+.card--stretch { height: 100%; }
+.card--scroll  { max-height: 420px; overflow: auto; }
+.card__title   { font-weight: 600; margin-bottom: 8px; }
+
+/* —— 表单与按钮 —— */
+.input, .textarea, select {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px;
+  background: #fff;
+  color: #0f172a;
+  outline: none;
+}
+.input:focus, .textarea:focus, select:focus { border-color: #94a3b8; }
+
+.textarea {
+  height: 260px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre;
+  overflow: auto;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: none;
+  background: #e2e8f0;
+  color: #0f172a;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(0.98); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn--primary { background: #2563eb; color: #fff; }
+.btn--primary:hover { filter: brightness(0.98); }
+
+/* —— 行布局与间距 —— */
+.row { display: flex; align-items: center; }
+.gap-8 { gap: 8px; }
+.mt-8 { margin-top: 8px; }
+
+/* —— 状态/提示 —— */
+.muted { color: #64748b; }
+.note  { font-size: 12px; color: #64748b; margin-top: 6px; }
+.error { color: #dc2626; }
+.text-danger { color: #dc2626; }
+.text-ok     { color: #16a34a; }
+
+/* —— KV 表 —— */
+.kv { display: grid; gap: 8px; }
+.kv__row { display: grid; grid-template-columns: 120px 1fr; gap: 8px; align-items: baseline; }
+.kv__key { color: #64748b; font-size: 13px; }
+.kv__val { word-break: break-all; }
+
+/* —— 标签 chips —— */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.chip  { padding: 2px 8px; background: #f1f5f9; border-radius: 9999px; font-size: 12px; }
+.chip--warn { background: #fef3c7; color: #92400e; }
+
+/* —— 表格通用 —— */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 8px; border-bottom: 1px solid #e2e8f0; }
+thead tr { background: #f1f5f9; }
+td { word-break: break-all; }
+
+/* —— 图片自适应（PR 曲线等） —— */
+img { max-width: 100%; height: auto; display: block; }
+
+/* —— 页脚 —— */
+.footer { padding: 16px 24px 24px; color: #64748b; text-align: center; }
+
+/* —— 工具条（API 输入 + 页签） —— */
+.toolbar {
+  position: sticky;
+  top: 56px; /* 紧随 hero 后（hero 有 position: sticky; top:0）*/
+  z-index: 9;
+  backdrop-filter: saturate(1.2) blur(4px);
+  background: rgba(248, 250, 252, 0.85);
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 24px;
+}
+
+.toolbar__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar__label {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.toolbar__input {
+  width: 280px;
+  height: 36px;
+}
+
+/* —— 页签 —— */
+.tabs { display: flex; gap: 6px; }
+.tab {
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.tab:hover { filter: brightness(0.98); }
+.tab--active {
+  background: #0ea5e9;
+  color: #fff;
+  border-color: #0ea5e9;
+}
+
+/* 让预测页左右两卡片高度一致且更优的滚动体验 */
+.card.card--stretch { display: flex; flex-direction: column; }
+.card.card--stretch .textarea { flex: 1; }
+
+/* 移动端兜底：页签折行、API 输入全宽 */
+@media (max-width: 900px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .toolbar__left { width: 100%; }
+  .toolbar__input { width: 100%; }
+  .tabs { justify-content: flex-start; flex-wrap: wrap; }
+}
+
+.chart-tooltip__inner {
+  background: #0f172a;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  white-space: nowrap;
+}
+.chart-tooltip__inner {
+  background: #0f172a;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  white-space: nowrap;
+}

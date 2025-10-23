@@ -1,0 +1,17 @@
+resp_whitelist:
+  factor: 0.85
+  keywords: ["非法路径","仅提供public","未授权","access denied","forbidden"]
+
+scanner_ua:
+  factor: 0.9
+  patterns: ["ivre-masscan","sqlmap","Go-http-client/1.1","curl/","nmap"]
+
+low_conf_low_hazard:
+  mode: "soft"        # "soft" or "hard"
+  drop_below: 0.60    # mode=hard时生效
+  soft_factor: 0.85   # mode=soft时生效
+  cutoff: 0.80        # 低危低信度判断阈
+
+dedup:
+  ttl_sec: 600
+  factor: 0.6
