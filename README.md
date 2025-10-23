@@ -95,10 +95,6 @@ npm run dev
 
 ## 📈 示例可视化
 
-### 模型结构与逻辑流程
-
-![](./static/architecture.png)
-
 ### 前端界面预览
 
 ![](./static/dashboard_preview.png)
