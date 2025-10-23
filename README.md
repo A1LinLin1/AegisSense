@@ -23,22 +23,26 @@
 ## 🧩 系统架构
 
 ```mermaid
-graph TD
-    A[用户前端界面] -->|JSON 请求| B[FastAPI API 层]
-    B -->|/predict /batch /calibrate| C[Scorer 模块]
-    C -->|调用| D[规则引擎 RuleEngine]
-    D -->|修正分数| E[融合器 Fuser]
-    E -->|写入| F[阈值文件 threshold.txt]
-    E -->|生成| G[静态文件 static/ (PR曲线, CSV)]
-    B -->|响应| A
-    subgraph Data Sources
-    H[安全告警日志集]
-    I[流量特征 FlowData]
-    J[拓扑数据 TopoData]
-    end
-    H --> C
-    I --> C
-    J --> C
+flowchart TD
+A[前端 UI] -->|JSON 请求| B[FastAPI API 层]
+B -->|/predict /batch /calibrate| C[Scorer 评分引擎]
+C -->|调用| D[规则引擎]
+D -->|调整| E[融合器 Fuser]
+E -->|写阈值| F[threshold_fuse.txt]
+E -->|产出| G[static 目录: PR 曲线 / CSV]
+B -->|响应| A
+
+
+subgraph "Data Sources"
+H[告警日志集]
+I[流量特征 FlowData]
+J[拓扑数据 TopoData]
+end
+
+
+H --> C
+I --> C
+J --> C
 ```
 
 ---
@@ -93,7 +97,7 @@ npm run dev
 
 ### 模型结构与逻辑流程
 
-![](./static/architecture_diagram.png)
+![](./static/architecture.png)
 
 ### 前端界面预览
 
@@ -157,13 +161,13 @@ AegisSense 采用“三层融合模型”实现日志判定：
 | Phase 2 | Dashboard 统计与图表     | ✅  |
 | Phase 3 | 攻击聚类（BERT / KMeans） | 🚧 |
 | Phase 4 | 实时日志流 (Kafka)       | 🔜 |
-| Phase 5 | 用户体系 / 工单管理         | 🔜 |
+| Phase 5 | 区块链存证        | 🔜 |
 
 ---
 
 ## 🤝 开源协议
 
-MIT License © 2025 **Hang Cui (崔航)**
+MIT License © 2025 **A1LinLin1**
 
 > “In the ocean of alerts, AegisSense guards the signal.”
 > 在告警的海洋中，AegisSense 守护真正的信号。
