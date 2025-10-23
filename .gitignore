@@ -1,0 +1,40 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+
+# --- VSCode / OS 临时文件 ---
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Frontend (Vite/React) 构建与依赖 ---
+frontend/**/node_modules/
+frontend/**/.vite/
+frontend/**/.vite-temp/
+frontend/**/dist/
+
+# --- 大文件与模型产物（建议用 Git LFS 或 Releases）---
+*.pkl
+*.bin
+*.model
+
+# --- 数据文件（默认忽略，按需放通）---
+*.csv
+*.json
+
+# 允许项目运行所需的小型词表/阈值文件（从忽略中放行）
+!tfidf_vocab.csv
+!threshold.txt
+!threshold_fuse.txt
+
+# 保留前端必要的配置/入口
+!frontend/**/package.json
+!frontend/**/package-lock.json
+!frontend/**/tsconfig*.json
+!frontend/**/vite.config.ts
+!frontend/**/eslint.config.js
+!frontend/**/index.html
+!frontend/**/.gitignore
