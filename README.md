@@ -93,11 +93,11 @@ npm run dev
 
 ### 模型结构与逻辑流程
 
-![](./docs/architecture_diagram.png)
+![](./static/architecture_diagram.png)
 
 ### 前端界面预览
 
-![](./docs/dashboard_preview.png)
+![](./static/dashboard_preview.png)
 
 ### PR 曲线样例
 
