@@ -58,8 +58,6 @@ J --> C
 ### 安装依赖
 
 ```bash
-# 后端依赖
-pip install -r requirements.txt
 
 # 前端依赖
 cd frontend
@@ -74,7 +72,8 @@ python api.py
 # 默认端口 http://127.0.0.1:8000
 
 # 启动前端开发服务器
-cd frontend
+cd frontend/frontend
+npm install
 npm run dev
 # 访问 http://localhost:5173
 ```
